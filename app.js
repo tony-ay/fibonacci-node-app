@@ -5,14 +5,28 @@ var path = require('path');
 var PORT = process.env.PORT || 5000;
 
 //return nth fibonacci number
-function fibo(n) {
-    if (n < 1) {
-        return 0;
-    } else if (n === 1) {
-        return 1;
-    } else {
-        return fibo(n - 1) + fibo(n - 2);
+function fiboHelper(n) {
+    if (n === 0) {
+        return [0, 1];
     }
+    else {
+        a = fiboHelper(Math.floor(n/2));
+        b = a[0] * (a[1] * 2 - a[0]);
+        c = a[0] * a[0] + a[1] * a[1];
+        if (n % 2 === 0) {
+            return [b, c];
+        }
+        else {
+            return [c, b + c];
+        }
+    }
+}
+
+function fibo(n) {
+    if (n < 0) {
+        return "Can't process negative number"
+    }
+    return fiboHelper(n)[0];
 }
 
 app.use((req, res, next) => {
