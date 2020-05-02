@@ -12,11 +12,6 @@ function fibo(n) {
     }
 }
 
-//express app listening on port 3000
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
-});
-
 //handling get requests for fib url path
 app.get("/fib", (req, res, next) => {
     try {
@@ -26,4 +21,9 @@ app.get("/fib", (req, res, next) => {
         res.json("Please enter valid integer");
         throw new Error(e);
     }
+});
+
+//express app listening
+app.listen(4000, () => {
+    console.log("Your node js server is running");
 });
